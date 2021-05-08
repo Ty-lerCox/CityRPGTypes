@@ -1,6 +1,9 @@
 import { WorldLocation } from './player-data.model';
 
 export interface Job {
+  wanted: any;
+  announce: any;
+  announcePrefix: string;
   accepted: boolean;
   min: number;
   max: number;
