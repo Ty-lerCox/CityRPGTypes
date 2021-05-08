@@ -4,4 +4,5 @@ export interface GhostBrick {
   yOffset: number;
   zOffset: number;
   quietMode: boolean;
+  test: string;
 }
