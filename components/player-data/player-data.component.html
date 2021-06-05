@@ -1,0 +1,65 @@
+<mat-card
+  class="example-card"
+  id="playerData"
+  style="-webkit-app-region: drag; padding: 0px"
+>
+  <mat-grid-list
+    cols="2"
+    rowHeight="50px"
+    style="justify-content: left; text-align: left"
+  >
+    <mat-grid-tile class="left">
+      <mat-chip-list>
+        <mat-chip>{{ bank.wallet | currency }}</mat-chip>
+        <mat-chip *ngIf="player.isWorking" color="accent" selected>
+          Current Working
+        </mat-chip>
+        <mat-chip *ngIf="getWantedLevelStars(player.wanted).length > 0">
+          <span *ngFor="let i of getWantedLevelStars(player.wanted)">
+            <fa-icon color="primary" [icon]="faStar"></fa-icon>
+          </span>
+        </mat-chip>
+        <span style="padding: 5px; border-radius: 4px; margin: 5px">
+          <section class="example-section">
+            <mat-progress-spinner
+              class="avatar"
+              class="mat-progress-spinner"
+              [color]="'warn'"
+              [mode]="'determinate'"
+              [value]="player.hunger"
+              [diameter]="25"
+            >
+            </mat-progress-spinner>
+            <div style="position: absolute; padding: 14px 10px 10px 5.3px">
+              <fa-icon [icon]="faHamburger"></fa-icon>
+            </div>
+          </section>
+        </span>
+      </mat-chip-list>
+    </mat-grid-tile>
+    <mat-grid-tile class="right">
+      <mat-chip-list>
+        <mat-chip *ngIf="getWantedLevelStars(player.wanted).length > 0">
+          <fa-icon *ngIf="getComputer()" [icon]="faLaptop"></fa-icon>
+        </mat-chip>
+        <mat-chip *ngIf="player.locationName">
+          {{ player.locationName }}
+        </mat-chip>
+        <button
+          style="-webkit-app-region: none; margin-left: 15px"
+          mat-stroked-button
+        >
+          <fa-icon [icon]="faArchive"></fa-icon>
+        </button>
+        <button
+          style="-webkit-app-region: none; margin-left: 15px"
+          id="toggleHide"
+          (click)="toggleHide()"
+          mat-stroked-button
+        >
+          <fa-icon [icon]="faBars"></fa-icon>
+        </button>
+      </mat-chip-list>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>

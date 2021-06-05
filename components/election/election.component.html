@@ -1,0 +1,59 @@
+<div style="margin-top: 15px"></div>
+
+<div *ngIf="!election">There is not an active election.</div>
+<div *ngIf="election">
+  <div *ngIf="!election.active">
+    Please wait until
+    {{ election.next | date }}.
+  </div>
+
+  <div *ngIf="election.active">
+    <div *ngIf="!voted" style="margin-top: 15px">
+      <mat-accordion>
+        <mat-expansion-panel [expanded]="true" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              An election is active for {{ election.cityName }}'s
+              {{ getElectionName(0) }}.
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <form>
+            <mat-form-field appearance="fill">
+              <mat-label>Vote for {{ getElectionName(0) }}</mat-label>
+              <mat-select>
+                <mat-option
+                  *ngFor="let candidate of election.candidates"
+                  [value]="candidate"
+                  >{{ candidate }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+            <br />
+            <button mat-raised-button (click)="vote()" color="primary">
+              Vote
+            </button>
+          </form>
+        </mat-expansion-panel>
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Become Candidate </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div *ngIf="isAlreadyCandidate()">
+            You are already a Candidate in this election.
+          </div>
+          <div *ngIf="!isAlreadyCandidate()">
+            <button mat-raised-button (click)="join()" color="primary">
+              Join
+            </button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div *ngIf="voted">Voted</div>
+  </div>
+</div>

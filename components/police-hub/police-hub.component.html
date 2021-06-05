@@ -1,0 +1,46 @@
+<div *ngIf="player.jobAcceptCriteria == AcceptanceType.Police">
+  <mat-card class="example-card" id="policeHub">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Police Hub</mat-card-title>
+    </mat-card-header>
+    <div *ngIf="player.location === location.Police">
+      <button mat-raised-button (click)="suitUp()" color="primary">
+        Suit Up!
+      </button>
+    </div>
+    <button mat-button (click)="getWantedPlayers()" color="warn">
+      Refresh Criminal List
+    </button>
+    <div *ngFor="let player of wantedPlayers">
+      <span style="margin-right: 15px">{{ player.player.name }}</span>
+      <span *ngFor="let i of getWantedLevelStars(player.wanted)">
+        <fa-icon [icon]="faStar"></fa-icon>
+      </span>
+    </div>
+  </mat-card>
+</div>
+<div *ngIf="player.location === location.Police">
+  <div *ngIf="player.jobAcceptCriteria != AcceptanceType.Police">
+    <mat-card class="example-card" id="policeHub">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Police Department</mat-card-title>
+      </mat-card-header>
+      <div *ngIf="player.location === location.Police">
+        <button mat-raised-button (click)="joinForce()" color="primary">
+          Join the Department
+        </button>
+      </div>
+      <button mat-button (click)="getWantedPlayers()" color="warn">
+        Refresh Criminal List
+      </button>
+      <div *ngFor="let player of wantedPlayers">
+        <span style="margin-right: 15px">{{ player.player.name }}</span>
+        <span *ngFor="let i of getWantedLevelStars(player.wanted)">
+          <fa-icon [icon]="faStar"></fa-icon>
+        </span>
+      </div>
+    </mat-card>
+  </div>
+</div>

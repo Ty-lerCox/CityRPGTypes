@@ -28,12 +28,10 @@ export class PlayerObject {
 }
 
 export interface PlayerExt {
-  player: Player;
+  player: any;
+  playerID: string;
   pawn: string;
-  pos: number[];
-  worldLocation?: WorldLocation;
-  location?: Location;
-  locationName?: string;
+  pos: any;
   isWorking: boolean;
   jobID: string;
   jobType: JobType;
@@ -41,6 +39,10 @@ export interface PlayerExt {
   jobLocation: WorldLocation;
   wanted: number;
   hunger: number;
+
+  worldLocation?: WorldLocation;
+  location?: Location;
+  locationName?: string;
   employment?: Employment;
   inventory?: number[];
 }

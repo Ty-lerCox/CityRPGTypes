@@ -1,0 +1,67 @@
+<div *ngIf="player.location === location.Bank">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Bank</mat-card-title>
+    </mat-card-header>
+    <mat-tab-group mat-align-tabs="start">
+      <mat-tab *ngIf="getHeist()">
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon" style="padding-right: 5px">
+            device_hub
+          </mat-icon>
+          Heist
+        </ng-template>
+        <div style="margin-top: 15px" fxLayout="row" fxLayout.xs="column">
+          <app-heist></app-heist>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon" style="padding-right: 5px">
+            attach_money
+          </mat-icon>
+          Account
+        </ng-template>
+        <div style="margin-top: 15px" fxLayout="row" fxLayout.xs="column">
+          <div *ngIf="bank.amount == null">
+            <button mat-raised-button (click)="createAccount()" color="primary">
+              Create Account
+            </button>
+          </div>
+          <div *ngIf="bank.amount != null">
+            <div>Bank: ${{ bank.amount }}</div>
+            <mat-form-field class="example-full-width">
+              <mat-label>Enter Amount</mat-label>
+              <input matInput [(ngModel)]="amount" disabled />
+            </mat-form-field>
+            <button mat-raised-button (click)="addAmount(1)">+1</button>
+            <button mat-raised-button (click)="addAmount(10)">+10</button>
+            <button mat-raised-button (click)="addAmount(100)">+100</button>
+            <button mat-raised-button (click)="addAmount(-1)">-1</button>
+            <button mat-raised-button (click)="addAmount(-10)">-10</button>
+            <button mat-raised-button (click)="addAmount(-100)">-100</button>
+            <br />
+            <span>
+              <button mat-raised-button (click)="withdraw()" color="primary">
+                Withdraw
+              </button>
+              <button mat-raised-button (click)="withdrawAll()" color="primary">
+                Withdraw All
+              </button>
+            </span>
+
+            <span style="margin-left: 15px">
+              <button mat-raised-button (click)="deposit()" color="accent">
+                Deposit
+              </button>
+              <button mat-raised-button (click)="depositAll()" color="accent">
+                Deposit All
+              </button>
+            </span>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

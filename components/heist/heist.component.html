@@ -1,0 +1,68 @@
+<div class="minigame" style="width: 95vw; overflow: none" *ngIf="visible">
+  <button
+    *ngIf="!started && !completed"
+    mat-raised-button
+    color="primary"
+    (click)="startHeist()"
+  >
+    Start Heist
+  </button>
+  <div *ngIf="completed">Heist Complete!</div>
+  <div [ngClass]="started && !completed ? '' : 'hide'">
+    <div class="groups" fxLayout="row" fxLayoutAlign="space-between">
+      <div id="1" class="group orange">
+        <div id="overlay-number-1" class="real_number">1</div>
+        <div id="shape-1" class="shape rectangle white hidden"></div>
+        <div id="color-text-1" class="text black-text hidden">
+          white<br />circle
+        </div>
+        <div id="center-text-1" class="number txt_green hidden">1</div>
+      </div>
+      <div id="2" class="group orange">
+        <div id="overlay-number-2" class="real_number">1</div>
+        <div id="shape-2" class="shape rectangle white hidden"></div>
+        <div id="color-text-2" class="text orange-text hidden">
+          white<br />circle
+        </div>
+        <div id="center-text-2" class="number txt_green hidden">1</div>
+      </div>
+      <div id="3" class="group orange">
+        <div id="overlay-number-3" class="real_number">1</div>
+        <div id="shape-3" class="shape rectangle white hidden"></div>
+        <div id="color-text-3" class="text yellow-text hidden">
+          white<br />circle
+        </div>
+        <div id="center-text-3" class="number orange-text hidden">1</div>
+      </div>
+      <div id="4" class="group orange">
+        <div id="overlay-number-4" class="real_number">1</div>
+        <div id="shape-4" class="shape rectangle white hidden"></div>
+        <div id="color-text-4" class="text green-text hidden">
+          white<br />circle
+        </div>
+        <div id="center-text-4" class="number orange-text hidden">1</div>
+      </div>
+    </div>
+    <div class="hidden">
+      <div class="timer">
+        <div class="progress active">
+          <div class="progress-bar timer-progress" style="width: 100%"></div>
+        </div>
+      </div>
+      <div id="question" class="question">{{ question }}</div>
+      <div class="answer">
+        <div class="answer-wrapper">
+          <label for="answer">Answer</label>
+          <input
+            (keydown.enter)="handleSubmit(false)"
+            id="answer"
+            type="text"
+            autocomplete="off"
+            placeholder="blue square"
+          />
+        </div>
+      </div>
+      <div class="solution"></div>
+    </div>
+  </div>
+</div>

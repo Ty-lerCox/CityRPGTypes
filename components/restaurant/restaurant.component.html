@@ -1,0 +1,88 @@
+<div *ngIf="player.location === location.Restaurant">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>
+        {{ player.locationName }}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-tab-group mat-align-tabs="start">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon" style="padding-right: 5px">
+            store
+          </mat-icon>
+          Store
+        </ng-template>
+        <div fxLayout="row" fxLayout.xs="column">
+          <mat-card class="example-card" *ngFor="let item of storeItems">
+            <img mat-card-image class="item-img" [src]="item.img" />
+            <mat-card-content>
+              <p>{{ item.name }} {{ item.cost | currency }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button
+                (click)="buyItem(item.storeItemID)"
+                mat-raised-button
+                color="primary"
+              >
+                Purchase
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon" style="padding-right: 5px">
+            event_note
+          </mat-icon>
+          Apply For Employment
+        </ng-template>
+        <mat-card *ngIf="!employment.storeName">
+          <mat-card-header>
+            <mat-card-title>Requirements:</mat-card-title>
+          </mat-card-header>
+          <!--<ul>
+            <li>Must not already be employed</li>
+          </ul>-->
+          <button mat-raised-button (click)="applyForJob()" color="primary">
+            Apply!
+          </button>
+        </mat-card>
+        <mat-card *ngIf="employment.storeName">
+          <mat-card-header>
+            <mat-card-title>Already Employed</mat-card-title>
+          </mat-card-header>
+          <button mat-raised-button (click)="leaveJob()" color="primary">
+            Leave Employment
+          </button>
+        </mat-card>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon" style="padding-right: 5px">
+            payment
+          </mat-icon>
+          Paycheck
+        </ng-template>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Paycheck</mat-card-title>
+          </mat-card-header>
+          <button
+            *ngIf="employment.check"
+            mat-raised-button
+            (click)="acceptPaycheck()"
+            color="primary"
+          >
+            Accept Paycheck
+          </button>
+          <div *ngIf="!employment.check">
+            No Paycheck available. Please come back later.
+          </div>
+        </mat-card>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

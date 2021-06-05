@@ -14,6 +14,7 @@ export enum Location {
   Dealer,
   Police,
   Restaurant,
+  CarDealer,
 }
 
 export interface CommercialLot {

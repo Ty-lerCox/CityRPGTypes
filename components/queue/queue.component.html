@@ -1,0 +1,83 @@
+<div *ngIf="player.jobAcceptCriteria !== AcceptanceType.Police">
+  <div *ngIf="player.hunger < 10">
+    <mat-card class="example-card">
+      <p>You are starving! Eat something before accepting a new job!</p>
+    </mat-card>
+  </div>
+  <mat-card
+    class="example-card"
+    *ngIf="!player.isWorking && player.hunger > 10"
+    id="jobQueue1"
+  >
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Job Queueeeeeeeeeeeeeeeeeeeeeeeeeeee</mat-card-title>
+    </mat-card-header>
+    <div *ngFor="let job of jobs">
+      <button
+        mat-raised-button
+        *ngIf="
+          job.acceptCriteria === player.jobAcceptCriteria && player.hunger > 10
+        "
+        (click)="accept(job.jobID)"
+        color="primary"
+      >
+        {{ getJobName(job.type) }}
+      </button>
+    </div>
+  </mat-card>
+  <mat-card
+    class="example-card"
+    *ngIf="player.isWorking && player.hunger > 10"
+    id="jobQueue2"
+  >
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Current Job</mat-card-title>
+    </mat-card-header>
+    <div *ngIf="job.accepted">
+      <div *ngIf="job.isComplete">Job Completed!</div>
+      <div *ngIf="job.type === jobType.Robbery && !job.isComplete">
+        <div *ngIf="player.location !== location.Robbery">
+          <b>Location: {{ job.jobName }}</b>
+          <br />
+          Instructions: Type /d in-game to continue the job. Once you reach the
+          location, come back to the website.
+        </div>
+        <div *ngIf="player.location === location.Robbery">
+          <button
+            mat-raised-button
+            (click)="beginRobbery(job.jobID)"
+            *ngIf="!jobStarted && !job.isComplete && !timerComplete"
+            color="primary"
+          >
+            Begin Robbery
+          </button>
+          <mat-card *ngIf="jobStarted">
+            <mat-card-content>
+              <h2 class="example-h2">Progress - {{ value }}/100</h2>
+              <section class="example-section">
+                <mat-progress-bar
+                  class="example-margin"
+                  [color]="color"
+                  [mode]="mode"
+                  [value]="value"
+                  [bufferValue]="bufferValue"
+                >
+                </mat-progress-bar>
+              </section>
+            </mat-card-content>
+          </mat-card>
+          <button
+            mat-raised-button
+            (click)="endRobbery(job.jobID)"
+            *ngIf="timerComplete"
+            color="primary"
+          >
+            Loot Building
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

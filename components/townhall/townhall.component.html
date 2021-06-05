@@ -1,0 +1,28 @@
+<div *ngIf="player.location === location.TownHall">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title> Town Hall </mat-card-title>
+    </mat-card-header>
+    <mat-tab-group mat-align-tabs="start">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon" style="padding-right: 5px">
+            home
+          </mat-icon>
+          Residential Properties
+        </ng-template>
+        <app-properties></app-properties>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon" style="padding-right: 5px">
+            verified
+          </mat-icon>
+          Election
+        </ng-template>
+        <app-election></app-election>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

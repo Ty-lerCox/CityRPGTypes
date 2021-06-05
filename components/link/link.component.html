@@ -1,0 +1,20 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Link your Brickadia Account:</mat-card-title>
+  </mat-card-header>
+  <div>
+    <div style="padding: 5px">1) Join Pirates Server</div>
+    <div style="padding: 5px">
+      2) Type the following command into Brickadia:
+      <mat-chip-list>
+        <mat-chip>/link {{ getSerial() }}</mat-chip>
+      </mat-chip-list>
+    </div>
+    <div style="padding: 5px">
+      <button mat-raised-button (click)="confirm()" color="primary">
+        3) Confirm Link
+      </button>
+    </div>
+  </div>
+</mat-card>
